@@ -41,8 +41,6 @@
                                                                            options:self.options
                                                                              error:&error];
     if (!regex) {
-        NSLog(@"%s: Unable to create regular expression for pattern \"%@\": %@",
-              __PRETTY_FUNCTION__, self.pattern, [error localizedDescription]);
         return NO;
     }
     

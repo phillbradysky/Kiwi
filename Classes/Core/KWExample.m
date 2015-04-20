@@ -148,7 +148,6 @@
 }
 
 - (void)reportResultForExampleNodeWithLabel:(NSString *)label {
-    NSLog(@"+ '%@ %@' [%@]", [self descriptionForExampleContext], [self.exampleNode description], label);
 }
 
 #pragma mark - Full description with context

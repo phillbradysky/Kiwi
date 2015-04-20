@@ -70,14 +70,14 @@
         for (int i = 0; i < numberOfClasses; ++i) {
             Class candidateClass = classes[i];
 
-            if (!class_respondsToSelector(candidateClass, @selector(conformsToProtocol:)))
-                continue;
-
-            if (![candidateClass conformsToProtocol:@protocol(KWMatching)])
-                continue;
-
-            [matcherClasses addObject:candidateClass];
-        }
+            // iterate over hierarchy of superclasses
+            Class superclass = candidateClass;
+            do {
+                if (class_conformsToProtocol(superclass, @protocol(KWMatching))) {
+                    [matcherClasses addObject:candidateClass];
+                    break;
+                }
+            } while ((superclass = class_getSuperclass(superclass)));        }
 
         free(classes);
     }
